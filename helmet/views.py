@@ -85,6 +85,15 @@ def reports(request):
 
 
 def metrics(request, username):
-    return render(request, 'metrics.html', {
-        'profile_user' : User.objects.get(username=username)
-    })
+    # Mock data for demonstration
+    profile_user = User.objects.get(username=username)
+    context = {
+        'profile_user': profile_user,
+        'pulse_detected': True,  # Example: Pulse detected
+        'temperature': 20,  # Example: Body temperature in °C
+        'gas_level': 'Safe',  # Options: 'Safe', 'Caution', 'Danger'
+        'overhead_status': 'Caution',  # Options: 'Safe', 'Caution', 'Danger'
+        'torch_status': True,  # Example: Torch is ON
+        'online_status': True,  # Example: User is online
+    }
+    return render(request, 'metrics.html', context)
